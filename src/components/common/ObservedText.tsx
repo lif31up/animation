@@ -1,5 +1,4 @@
 'use client'
-import '@/styles/Animation.css'
 import React, { useEffect, useRef } from 'react'
 
 interface MovingTypographyProps {
