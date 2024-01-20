@@ -1,18 +1,16 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
+import Default from "@/components/utils/interface";
 
-interface MovingTypographyProps {
-  className: string
+interface ObservedText extends Default {
   children: string
   animation: string
-  id: string
 }
-const whitespace: React.CSSProperties = {
-  width: '1rem',
-}
-export default function ObservedText({ className, children, animation, id }: MovingTypographyProps) {
+
+export default function ObservedText({ className, children, animation, id }: ObservedText) {
   const observerRef: any = useRef(null)
   useEffect(() => {
+    if (typeof id !== "string") return
     const typography: HTMLElement | null = document.getElementById(id)
     if (typography === null) {
       return
@@ -35,11 +33,11 @@ export default function ObservedText({ className, children, animation, id }: Mov
     const options = { root: null, rootMargin: '0px', threshold: 0.1 }
     observerRef.current = new IntersectionObserver(intersectionHandler, options)
     observerRef.current.observe(typography)
-  }, [false])
+  }, [])
   const typography: Array<React.ReactNode> = []
   for (let i = 0; children[i]; i++) {
     if (children[i] === ' ') {
-      typography.push(<div key={i} style={whitespace} />)
+      typography.push(<div key={i} style={{width: "1.25rem"}} />)
     } else {
       typography.push(
         <div key={i} className={['_letter', animation].join(' ').trim()}>
@@ -49,7 +47,7 @@ export default function ObservedText({ className, children, animation, id }: Mov
     }
   }
   return (
-    <div className={['block', className].join(' ').trim()} id={id}>
+    <div className={`flex items-center justify-start ${className}`} id={id}>
       {typography}
     </div>
   )

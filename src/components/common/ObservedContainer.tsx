@@ -1,15 +1,23 @@
 'use client'
 import React, { useEffect, useRef } from 'react'
+import Default from "@/components/utils/interface";
 
-interface observedContainerProps {
-  id: string
+interface ObservedContainer extends Default {
   children: React.ReactNode
   animation: string
   threshold?: number
 }
-export default function ObservedContainer({ id, children, animation, threshold }: observedContainerProps): React.JSX.Element {
+export default function ObservedContainer({ className, id, children, animation, threshold }: ObservedContainer): React.JSX.Element {
   const observerRef: any = useRef(null)
+
+  let options: object = {
+    root: null,
+    rootMargin: '0px',
+    threshold: threshold !== null ? threshold : 0.5,
+  }
+
   useEffect((): void => {
+    if (typeof id !== 'string') return
     let element: HTMLElement | null = document.getElementById(id)
     const intersectionHandler = (entries: Array<any>): void => {
       entries.forEach((entry): void | (() => void) => {
@@ -22,28 +30,24 @@ export default function ObservedContainer({ id, children, animation, threshold }
         }
       })
     }
-    let options: object = {
-      root: null,
-      rootMargin: '0px',
-      threshold: threshold !== null ? threshold : 0.5,
-    }
     observerRef.current = new IntersectionObserver(intersectionHandler, options)
     observerRef.current.observe(element)
-  }, [false])
+  }, [])
+
   return (
-    <div id={id} className={animation}>
+    <div id={id} className={`${animation} ${className}`}>
       {children}
     </div>
   )
 }
 
-interface observedDistributorProps {
+interface ObservedDistributor extends Default {
   prefix: string
   children: React.ReactNode
   animation: string
   threshold?: number
 }
-export function ObservedDistributor({ prefix, children, animation, threshold }: observedDistributorProps): React.JSX.Element {
+export function ObservedDistributor({ prefix, children, animation, threshold }: ObservedDistributor): React.JSX.Element {
   const distributor: Array<React.ReactNode> = []
   React.Children.forEach(children, (child: React.ReactNode, index: number): void => {
     if (React.isValidElement(child)) {
