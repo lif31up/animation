@@ -1,6 +1,6 @@
 "use client";
 import React, { MutableRefObject, useEffect, useRef } from "react";
-import Default from "@/components/utils/interface";
+import Default from "../../util/interface";
 
 interface ObservedText extends Default {
   children: string;
