@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useEffect, useRef } from "react";
 import Default from "../../util/interface";
 
@@ -7,7 +8,7 @@ interface ObservedContainer extends Default {
   animation: string;
   threshold?: number;
 }
-export default function ObservedContainer({
+function ObservedContainer({
   className,
   id,
   children,
@@ -15,13 +16,11 @@ export default function ObservedContainer({
   threshold,
 }: ObservedContainer): React.JSX.Element {
   const observerRef: any = useRef(null);
-
   let options: object = {
     root: null,
     rootMargin: "0px",
     threshold: threshold !== null ? threshold : 0.5,
   };
-
   useEffect((): void => {
     if (typeof id !== "string") return;
     let element: HTMLElement | null = document.getElementById(id);
@@ -42,7 +41,6 @@ export default function ObservedContainer({
     );
     observerRef.current.observe(element);
   }, []);
-
   return (
     <div id={id} className={`${animation} ${className}`}>
       {children}
@@ -81,3 +79,5 @@ export function ObservedDistributor({
   );
   return <>{distributor}</>;
 }
+
+export default ObservedContainer
