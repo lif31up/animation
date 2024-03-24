@@ -3,5 +3,6 @@ export default interface TailwindProperties {
   lg?: string
   md?: string
   sm?: string
+  mb?: string
   base?: string
 }

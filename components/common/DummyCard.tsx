@@ -1,6 +1,6 @@
 import React from 'react'
-import TailwindProperties from "../../util/tailwindProperties";
-import Default from "../../util/interface";
+import TailwindProperties from "../../styles/tailwindProperties";
+import Default from "../../utils/interface";
 
 function DummyCard({className}:Default){
   const style: TailwindProperties = {

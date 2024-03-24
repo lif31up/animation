@@ -1,8 +1,8 @@
 import React from 'react'
-import Default from "../../util/interface";
-import TailwindProperties from "../../util/tailwindProperties";
+import Default from "../../utils/interface";
+import TailwindProperties from "../../styles/tailwindProperties";
 import Heading from "../common/Heading";
-import ObservedText from "../common/ObservedText";
+import ObservedText from "../feature/ObservedText";
 
 function DynamicTextSection({className}:Default):React.JSX.Element{
   const style: TailwindProperties = {

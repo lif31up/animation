@@ -1,17 +1,14 @@
 import React from 'react'
-import Default from "../../util/interface";
-import TailwindProperties from "../../util/tailwindProperties";
+import Default from "../../utils/interface";
+import TailwindProperties from "../../styles/tailwindProperties";
 import Heading from "../common/Heading";
-import { ObservedDistributor } from "../common/ObservedContainer";
+import { ObservedDistributor } from "../feature/ObservedContainer";
 import DummyCard from "../common/DummyCard";
+import { section } from "../../styles/common";
 
 function LazyLoadSection({className}:Default){
-  const style: TailwindProperties = {
-    sm: 'sm:w-full sm:px-80 sm:my-16',
-    base: 'w-full',
-  }
   return(
-    <section className={`${style.sm} ${style.base} ${className}`}>
+    <section className={`${section.xl} ${section.lg} ${section.md} ${section.sm} ${section.mb} ${section.base} ${className}`}>
       <Heading
         data={{
           filename: 'ObservedContainer.tsx',

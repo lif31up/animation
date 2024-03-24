@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import Default from "../../util/interface";
+import Default from "../../utils/interface";
 
 interface ObservedContainer extends Default {
   children: React.ReactNode;
@@ -67,6 +67,7 @@ export function ObservedDistributor({
       if (React.isValidElement(child)) {
         distributor.push(
           <ObservedContainer
+            key={index}
             id={prefix + `--${index}`}
             animation={animation}
             threshold={threshold}

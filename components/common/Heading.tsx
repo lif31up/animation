@@ -1,6 +1,7 @@
 import React from 'react'
-import Default from "../../util/interface";
-import TailwindProperties from "../../util/tailwindProperties";
+import Default from "../../utils/interface";
+import TailwindProperties from "../../styles/tailwindProperties";
+import { heading } from '../../styles/common';
 
 interface Data {
   filename: string
@@ -13,13 +14,9 @@ interface Heading extends Default {
 }
 function Heading({ className, data }: Heading) {
   const { filename, title, desc, href }: Data = data
-  const style: TailwindProperties = {
-    sm: 'sm:my-4 sm:bg-neutral-100 sm:p-4 sm:shadow sm:relative',
-    base: 'p-6 bg-neutral-100 shadow relative',
-  }
   return (
-    <section className={`${style.sm} ${style.base} ${className}`}>
-      <h2 className="text-sm font-bold text-neutral-400 tracking-wider">
+    <section className={`${heading.lg} ${heading.xl} ${heading.md} ${heading.sm} ${heading.mb} ${heading.base} ${className}`}>
+      <h2 className="text-sm font-bold text-neutral-500 tracking-wider">
         {filename}
       </h2>
       <h1 className="text-3xl font-bold text-gray-800 mt-8">{title}</h1>
